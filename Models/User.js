@@ -12,6 +12,8 @@ const User = new mongoose.Schema({
   phone: String,
   username: String,
   expo_id: String,
+  transactions: Array,
+  charity: Number,
 });
 
 module.exports = mongoose.model("User", User);
