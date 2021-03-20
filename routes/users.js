@@ -4,6 +4,7 @@ var User = require("../Models/User");
 var multer = require("multer");
 var imageURI = "";
 console.clear();
+var jwt = require('jsonwebtoken');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -37,19 +38,99 @@ router.post("/", async (req, res, next) => {
   res.json(saved);
 });
 
-// Login
-router.post("/login", async (req, res, next) => {
-  var user = await User.findOne({ email: req.body.email });
-  console.log("====================================");
-  console.log(req.body.email + "   " + req.body.password);
-  console.log("====================================");
-  if (user == null) {
-    res.send("404");
-  } else {
-    if (user.password != req.body.password) {
-      res.send("400");
-    } else res.json(user);
+/** http://localhost:3000/users/login
+ * {"email" :"fouzai.alaa@gmail.com",
+ "password" :"12345678"}
+ * */
+router.post('/login',async (req,res) =>
+{
+  try{
+    // await new Promise(resolve => setTimeout(resolve, 5000));
+    const NewUser =await User.find({ email : req.body.email  }).limit(1);
+    console.log(NewUser.length);
+    //await sleep(2000);
+    if (NewUser.length < 1)
+    {
+      await res.json({status: "err", message: 'Email Does not Exists'});
+      return ;
+    }
+    /*
+    if (bcrypt.compareSync(NewUser[0].password, req.body.password))
+    {
+
+      await res.json({status:"err" , message: 'Wrong Paswword'});
+      return ;
+    }*/
+    if (NewUser[0].password != req.body.password)
+    {
+
+      await res.json({status:"err" , message: 'Wrong Paswword'});
+      return ;
+    }
+    if (NewUser[0].enabled === 0 )
+    {
+      await res.json({status:"err" , message: 'User is Disabled'});
+      return ;
+    }
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var payload = {
+      id: NewUser[0]._id,
+    };
+    let token = jwt.sign(payload,process.env.token_Key);
+    res.json({status:"ok" , message: 'Welcome Back', UserData : NewUser , jwttoken : token});
+  }catch (err) {
+    res.header("Access-Control-Allow-Headers", "*");
+    res.json({ message:err.message });
   }
+
+});
+/*
+http://localhost:3000/users/register
+* {
+    "FirstName" : "alaa",
+    "LastName" :"fouzai",
+    "email" :"fouzai.alaa@gmail.com",
+    "password" :"12345678",
+    "phone":123456,
+    "username":"fouzai alaa"
+  }
+*
+* */
+router.post('/register',async (req,res) =>
+{
+  console.log(req.body);
+  let user=new User({
+    FirstName : req.body.FirstName,
+    LastName :req.body.LastName,
+    email :req.body.email,
+    password :req.body.password,
+    enabled :true,
+    phone:req.body.phone,
+    username:req.body.username,
+  });
+  try{
+    const NewUser =await User.find({ email : req.body.email });
+    if (NewUser === undefined || NewUser.length == 0 )
+    {
+      //var salt = bcrypt.genSaltSync(10);
+      user.password =req.body.password;// bcrypt.hashSync(user.password, salt);
+      user.role.push("user");
+      user = await user.save();
+      res.json({status:"ok" , message: 'Account Create ! You can now Login'});
+      console.log("new user created");
+      return ;
+    }
+    console.log('hello');
+    //res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.json({status:"err" , message: 'Email Already Exists'});
+  }catch (err) {
+    //res.header("Access-Control-Allow-Headers", "*");
+    res.json({ message:err.message });
+  }
+
 });
 
 // Get an user by _id

@@ -8,6 +8,8 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var locationsRouter = require("./routes/locations");
 var adminRouter = require("./routes/admin");
+require('dotenv').config();
+var jwt = require('jsonwebtoken');
 
 var app = express();
 
@@ -23,14 +25,14 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/user", express.static(path.join(__dirname, "uploads")));
 
 mongoose.connect(
-  "mongodb+srv://khaled:Clubisti1996@cluster0.aykhi.mongodb.net/Restaurent",
+    process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected")
 );
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/locations", locationsRouter);
-app.use("/admin", adminRouter);
+app.use("/" ,indexRouter);
+app.use("/users" , usersRouter);
+app.use("/locations" ,locationsRouter);
+app.use("/admin" , adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -46,6 +48,10 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+app.post('/test',(req,res)=>{
+  console.log(req.body);
+  res.send(req.body);
 });
 app.listen(3000,'0.0.0.0');
 module.exports = app;
