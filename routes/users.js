@@ -91,7 +91,11 @@ router.post("/login", async (req, res) => {
 });
 /*
 http://localhost:3000/users/register
-* {
+* 
+profile:{
+  
+},
+user : {
     "FirstName" : "alaa",
     "LastName" :"fouzai",
     "email" :"fouzai.alaa@gmail.com",
