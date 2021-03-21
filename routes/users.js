@@ -92,18 +92,24 @@ router.post("/login", async (req, res) => {
 /*
 http://localhost:3000/users/register
 * 
-profile:{
-  
-},
-user : {
-    "FirstName" : "alaa",
-    "LastName" :"fouzai",
-    "email" :"fouzai.alaa@gmail.com",
-    "password" :"12345678",
-    "phone":123456,
-    "username":"fouzai alaa"
-  }
-*
+data json from the front as formdata
+profile : {
+    "_parts": Array [
+    Array [
+      "profile",
+      Object {
+        "name": "54992d4e-a48a-4b23-9599-0399c9508742.jpg",
+        "type": "image/jpeg",
+        "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540senpaitn%252FShareMoney/ImagePicker/54992d4e-a48a-4b23-9599-0399c9508742.jpg",
+      },
+    ],
+    Array [
+      "user",
+      "{\"email\":\"M\",\"password\":\"M\",\"products\":[],\"establishement\":[],\"photos\":[],\"birthdate\":\"2021-03-21T19:50:06.121Z\",\"role\":[\"seller\"],\"createdAt\":\"2021-03-21T19:50:32.887Z\",\"phone\":\"00\",\"username\":\"\",\"expo_id\":\"\",\"charity\":0,\"duty\":0,\"FirstName\":\"M\",\"enabled\":1,\"LastName\":\"M\",\"transactions\":[]}",
+    ],
+  ],
+}
+}
 * */
 router.post("/register", upload.single("profile"), async (req, res) => {
   const userData = JSON.parse(req.body.user);
