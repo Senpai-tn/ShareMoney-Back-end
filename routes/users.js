@@ -106,26 +106,21 @@ user : {
 *
 * */
 router.post("/register", upload.single("profile"), async (req, res) => {
-  console.log(req.body);
   const userData = JSON.parse(req.body.user);
-  let user = new User({
-    FirstName: userData.FirstName,
-    LastName: userData.LastName,
-    email: userData.email,
-    password: userData.password,
-    enabled: true,
-    phone: userData.phone,
-    username: userData.username,
-  });
+  let user = new User(userData);
   try {
     const NewUser = await User.find({ email: userData.email });
     if (NewUser === undefined || NewUser.length == 0) {
       //var salt = bcrypt.genSaltSync(10);
       user.password = req.body.password; // bcrypt.hashSync(user.password, salt);
-      user.role.push("user");
       user.photos.push(imageURI);
       user = await user.save();
-      res.json({ status: "ok", message: "Account Create ! You can now Login" });
+      res.json({
+        status: "ok",
+        message: "Account Create ! You can now Login",
+        userdata: user,
+      });
+      console.log(JSON.stringify(user));
       console.log("new user created");
       return;
     }
