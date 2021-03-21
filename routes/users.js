@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
     res.json({
       status: "ok",
       message: "Welcome Back",
-      UserData: NewUser,
+      UserData: NewUser[0], //return the object not the array
       jwttoken: token,
     });
   } catch (err) {
