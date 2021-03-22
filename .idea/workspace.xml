@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="05396106-7aa0-4362-bf00-2fe8caea49fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/ShareMoney-Back-end.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1616435425140da15885b-22af-43ee-aee9-7ec0b4b68bfa.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1616435549585cd8cc87b-3ba9-470e-9edd-46a00b34eee2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/16164358316961b9b73eb-6d1b-46c1-8017-b8b07c79cbde.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/16164359068524271d3f5-33f9-4be2-a81e-ca758f83efa1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1616436242147e5241e78-dedf-44c9-a342-0f2a3ee789c9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1616436254081e5241e78-dedf-44c9-a342-0f2a3ee789c9.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1q7a5Li7GwKSbAuzSzpEOllN5cq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="05396106-7aa0-4362-bf00-2fe8caea49fe" name="Default Changelist" comment="" />
+      <created>1616432924944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616432924944</updated>
+      <workItem from="1616432945092" duration="3224000" />
+      <workItem from="1616436910189" duration="1039000" />
+      <workItem from="1616438513370" duration="120000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

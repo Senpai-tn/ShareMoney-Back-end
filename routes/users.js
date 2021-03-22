@@ -112,13 +112,13 @@ profile : {
 }
 * */
 router.post("/register", upload.single("profile"), async (req, res) => {
+  console.log(req.body.user);
   const userData = JSON.parse(req.body.user);
+
   let user = new User(userData);
   try {
     const NewUser = await User.find({ email: userData.email });
     if (NewUser === undefined || NewUser.length == 0) {
-      //var salt = bcrypt.genSaltSync(10);
-      user.password = req.body.password; // bcrypt.hashSync(user.password, salt);
       user.photos.push(imageURI);
       user = await user.save();
       res.json({
