@@ -142,7 +142,7 @@ router.post("/update", upload.single("profile"), async (req, res, next) => {
   const user = JSON.parse(req.body.user);
   const newUser = await User.findOne({ _id: user._id });
   newUser.overwrite(user);
-  newUser.photos.unshift(imageURI);
+  if (imageURI != "") newUser.photos.unshift(imageURI);
   const newData = await newUser.save();
   if (newData != null) {
     res.json({
