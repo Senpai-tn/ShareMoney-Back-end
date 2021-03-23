@@ -30,15 +30,6 @@ router.get("/truncate", async (req, res, next) => {
   res.send("truncated");
 });
 
-// Register
-router.post("/", async (req, res, next) => {
-  const userData = JSON.parse(req.body.user);
-  var user = new User(userData);
-  user.photos.push(imageURI);
-  var saved = await user.save();
-  res.json(saved);
-});
-
 /** http://localhost:3000/users/login
  * {"email" :"fouzai.alaa@gmail.com",
  "password" :"12345678"}
@@ -144,6 +135,22 @@ router.post("/register", upload.single("profile"), async (req, res) => {
 router.post("/getUser", async (req, res, next) => {
   var user = await User.findOne({ _id: req.body._id });
   res.json(user);
+});
+
+router.post("/update", upload.single("profile"), async (req, res, next) => {
+  //console.log(req.body);
+  const user = JSON.parse(req.body.user);
+  const newUser = await User.findOne({ _id: user._id });
+  newUser.overwrite(user);
+  newUser.photos.unshift(imageURI);
+  const newData = await newUser.save();
+  if (newData != null) {
+    res.json({
+      status: "ok",
+      message: "Account Create ! You can now Login",
+      userdata: newData,
+    });
+  } else res.json({ status: "err", message: "Email Already Exists" });
 });
 
 // Add charity to the user collection
