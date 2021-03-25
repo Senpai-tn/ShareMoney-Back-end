@@ -19,7 +19,7 @@ const User = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  establishement: [mongoose.Schema.Types.ObjectId],
+  establishement: [],
   photos: [],
   birthdate: Date,
   role: [],
