@@ -37,4 +37,9 @@ router.get("/", async (req, res, next) => {
   res.json(log);
 });
 
+router.get("/valid", async (req, res, next) => {
+  const admins = await Admin.find({ month: { $lt: 1617231600000 } });
+  res.json(admins);
+});
+
 module.exports = router;

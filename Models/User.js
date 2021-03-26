@@ -28,6 +28,7 @@ const User = new mongoose.Schema({
   expo_id: String,
   transactions: [],
   charity: Number,
+  duty: Number,
 });
 
 module.exports = mongoose.model("User", User);

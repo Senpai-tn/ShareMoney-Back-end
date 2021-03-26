@@ -5,6 +5,7 @@ var multer = require("multer");
 var imageURI = "";
 console.clear();
 var jwt = require("jsonwebtoken");
+const Admin = require("../Models/Admin");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -155,11 +156,39 @@ router.post("/update", upload.single("profile"), async (req, res, next) => {
 
 // Add charity to the user collection
 router.post("/charity", async (req, res, next) => {
-  var user = await User.findOne({ _id: "604a832a64e90b26a0443b80" });
-  var t = JSON.parse(req.body.t);
-  user.charity += t.price;
-  const saved = await user.save();
-  res.json(saved);
+  var user = await User.findOne({ _id: req.body.user._id });
+  var seller = await User.findOne({ _id: req.body.id_seller });
+  var charity = JSON.parse(req.body.charity);
+  user.charity += charity - charity / 10;
+  seller.duty += charity;
+  await seller.save();
+  const savedUser = await user.save();
+  var d = new Date();
+  var a = new Admin();
+  d.setDate(1);
+  d.setHours(0);
+  d.setMinutes(0);
+  d.setSeconds(0);
+  d.setUTCMilliseconds(0);
+
+  a.month = d.getTime();
+  console.log(a.month);
+  a.numberUser = 0;
+  a.charity = charity;
+  const old = await Admin.findOne({
+    month: d.getTime(),
+  });
+  if (old != null) {
+    old.charity += a.charity;
+    old.numberUser += 1;
+    await old.save();
+  } else {
+    a.month = d.getTime();
+    a.numberUser = 1;
+    await a.save();
+  }
+  console.log(savedUser.duty);
+  res.json(savedUser);
 });
 
 module.exports = router;
