@@ -38,8 +38,23 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/valid", async (req, res, next) => {
-  const admins = await Admin.find({ month: { $lt: 1617231600000 } });
-  res.json(admins);
+  const d = new Date();
+  d.setDate(1);
+  d.setHours(0);
+  d.setMinutes(0);
+  d.setSeconds(0);
+  d.setUTCMilliseconds(0);
+  const admins = await Admin.find({ month: { $lt: d.getTime() } });
+  let s = 0;
+  admins.map((item, k) => {
+    s += item.charity;
+  });
+  const log = {
+    total: s,
+    months: admins,
+  };
+
+  res.json(log);
 });
 
 module.exports = router;

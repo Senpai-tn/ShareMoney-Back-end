@@ -8,8 +8,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var locationsRouter = require("./routes/locations");
 var adminRouter = require("./routes/admin");
-require('dotenv').config();
-var jwt = require('jsonwebtoken');
+var publicationRouter = require("./routes/publications");
+require("dotenv").config();
+var jwt = require("jsonwebtoken");
 
 var app = express();
 
@@ -25,14 +26,15 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/user", express.static(path.join(__dirname, "uploads")));
 
 mongoose.connect(
-    process.env.DB_CONNECTION,
+  process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected")
 );
-app.use("/" ,indexRouter);
-app.use("/users" , usersRouter);
-app.use("/locations" ,locationsRouter);
-app.use("/admin" , adminRouter);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/locations", locationsRouter);
+app.use("/admin", adminRouter);
+app.use("/publications", publicationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -49,9 +51,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-app.post('/test',(req,res)=>{
+app.post("/test", (req, res) => {
   console.log(req.body);
   res.send(req.body);
 });
-app.listen(3000,'0.0.0.0');
+app.listen(3000, "0.0.0.0");
 module.exports = app;
